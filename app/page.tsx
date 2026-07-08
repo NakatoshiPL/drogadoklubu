@@ -1,65 +1,91 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { localeLabels, supportedLocales } from "@/lib/i18n-site";
+import { buildWebPageSchema, siteLastModified } from "@/lib/seo-schema";
+
+export const metadata: Metadata = {
+  title: "Wybierz język",
+  description:
+    "Wielojęzyczny poradnik dla rodziców młodych piłkarzy: PL, NL, EN, DE, BE.",
+  keywords: ["jak zapisać dziecko do klubu piłkarskiego"],
+};
 
 export default function Home() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakdotrzeczdoklubu.pl";
+  const webPageSchema = buildWebPageSchema({
+    baseUrl,
+    path: "/",
+    name: "Poradnik dla rodziców młodych piłkarzy",
+    description:
+      "Wielojęzyczny poradnik dla rodziców młodych piłkarzy: PL, NL, EN, DE, BE.",
+    inLanguage: "pl",
+    lastModified: siteLastModified,
+  });
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="space-y-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <section className="rounded-3xl border border-slate-200 bg-gradient-to-br from-[#1a2a6c] via-slate-900 to-[#1a2a6c] p-8 text-white shadow-xl sm:p-12">
+        <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-200">
+          Football Parent Guide
+        </p>
+        <h1 className="max-w-4xl text-3xl font-bold leading-tight sm:text-5xl">
+          Elegancki, nowoczesny poradnik dla rodziców młodych piłkarzy
+        </h1>
+        <p className="mt-5 max-w-3xl text-base leading-8 text-slate-100">
+          Wybierz język i przejdź przez proces krok po kroku: systemy klubowe,
+          kontakt, testy i FAQ.
+        </p>
+        <div className="mt-7 flex flex-wrap gap-3">
+          <Link
+            href="/pl"
+            className="rounded-full bg-[#f7931e] px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:brightness-110"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Wejdź po polsku (PL)
+          </Link>
+          <Link
+            href="/nl"
+            className="rounded-full border border-white/60 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10"
           >
-            Documentation
-          </a>
+            Open Nederlands (NL)
+          </Link>
         </div>
-      </main>
+      </section>
+
+      <section>
+        <h2 className="mb-5 text-2xl font-semibold text-slate-900">
+          Wszystkie wersje językowe
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {supportedLocales.map((locale) => (
+            <Link
+              key={locale}
+              href={`/${locale}`}
+              className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow"
+            >
+              <h3 className="text-lg font-semibold text-slate-900">
+                {localeLabels[locale]}
+              </h3>
+              <p className="mt-2 text-sm text-slate-600">/{locale}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+        <h2 className="text-2xl font-semibold text-slate-900">
+          SEO i widoczność
+        </h2>
+        <p className="mt-4 max-w-3xl text-base leading-8 text-slate-700">
+          Strona ma wdrożone SEO techniczne (metadata, sitemap, robots,
+          struktura wielojęzyczna). Nie da się uczciwie zagwarantować pozycji
+          #1 w Google, ale ta architektura daje mocną bazę do regularnego wzrostu
+          organicznego.
+        </p>
+      </section>
     </div>
   );
 }

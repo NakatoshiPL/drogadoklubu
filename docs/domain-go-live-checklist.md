@@ -6,19 +6,21 @@ Użyj tej listy po pierwszym deployu na Vercel i po zakupie domeny.
 
 ## Faza A — Deploy na Vercel (teraz)
 
-- [ ] Repo na GitHubie (`main`)
-- [ ] Projekt podłączony w Vercel (Framework: Next.js)
-- [ ] Pierwszy deploy zakończony sukcesem
-- [ ] Działa adres tymczasowy: `https://twoj-projekt.vercel.app`
-- [ ] W Vercel ustawione ENV:
-  - `NEXT_PUBLIC_SITE_URL=https://twoj-projekt.vercel.app`
-- [ ] Redeploy po dodaniu ENV
-- [ ] Test URL:
-  - [ ] `/`
-  - [ ] `/pl`, `/nl`
-  - [ ] `/sitemap.xml`
-  - [ ] `/robots.txt`
-  - [ ] `/pl/blog/kalendarz-naborow-2026-2027`
+- [ ] Repo na GitHubie (`main`) — **do zrobienia: `gh auth login` + push**
+- [x] Projekt podłączony w Vercel (Framework: Next.js)
+- [x] Pierwszy deploy zakończony sukcesem
+- [x] Działa adres produkcyjny: `https://pilka-beige.vercel.app`
+- [x] W Vercel ustawione ENV:
+  - `NEXT_PUBLIC_SITE_URL=https://pilka-beige.vercel.app`
+- [x] Redeploy po dodaniu ENV
+- [x] Test URL:
+  - [x] `/`
+  - [x] `/pl`, `/nl`
+  - [x] `/sitemap.xml`
+  - [x] `/robots.txt`
+  - [x] `/pl/blog/kalendarz-naborow-2026-2027`
+
+**Panel Vercel:** https://vercel.com/lukas-projects-f32e83ed/pilka
 
 ---
 

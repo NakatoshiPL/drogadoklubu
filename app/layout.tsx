@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Roboto_Mono } from "next/font/google";
+import { Analytics } from "./components/analytics";
+import { MobileBottomCta } from "./components/mobile-cta";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import "./globals.css";
@@ -71,6 +73,7 @@ export default function RootLayout({
       className={`${inter.variable} ${robotoMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-slate-50 text-slate-900">
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -81,9 +84,10 @@ export default function RootLayout({
         />
         <div className="flex min-h-full flex-col">
           <SiteHeader />
-          <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-10 md:px-6">
+          <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 pb-28 md:px-6 md:py-10 md:pb-10">
             {children}
           </main>
+          <MobileBottomCta />
           <SiteFooter />
         </div>
       </body>

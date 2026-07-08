@@ -143,12 +143,12 @@ function getPageSeoInfo(
 
 function LanguageSwitch({ locale, slugPath }: { locale: SiteLocale; slugPath: string }) {
   return (
-    <div className="mb-6 flex flex-wrap gap-2">
+    <div className="mb-5 flex flex-nowrap gap-2 overflow-x-auto pb-1 sm:mb-6 sm:flex-wrap sm:overflow-visible sm:pb-0">
       {supportedLocales.map((lang) => (
         <Link
           key={lang}
           href={`/${lang}${slugPath ? `/${slugPath}` : ""}`}
-          className={`rounded-full border px-3 py-1 text-xs font-medium transition ${
+          className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-medium transition ${
             locale === lang
               ? "border-slate-900 bg-slate-900 text-white"
               : "border-slate-300 bg-white text-slate-700 hover:border-slate-400"
@@ -164,11 +164,30 @@ function LanguageSwitch({ locale, slugPath }: { locale: SiteLocale; slugPath: st
 function LocalizedHome({ locale }: { locale: SiteLocale }) {
   const c = localeContent[locale];
   return (
-    <section className="space-y-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
-      <h1 className="text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
-        {c.home.title} <span className="text-[#1a2a6c]">{c.home.subtitle}</span>
-      </h1>
-      <p className="max-w-3xl text-base leading-8 text-slate-700">{c.home.intro}</p>
+    <section className="space-y-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:space-y-8 sm:p-10">
+      <div className="space-y-4">
+        <h1 className="text-2xl font-bold leading-tight text-slate-900 sm:text-4xl">
+          {c.home.title} <span className="text-[#1a2a6c]">{c.home.subtitle}</span>
+        </h1>
+        <p className="max-w-3xl text-sm leading-7 text-slate-700 sm:text-base sm:leading-8">
+          {c.home.intro}
+        </p>
+        <div className="grid gap-2 sm:flex sm:flex-wrap sm:gap-3">
+          <Link
+            href={`/${locale}/przygotowanie-i-testy`}
+            className="rounded-full bg-[#f7931e] px-4 py-3 text-center text-sm font-semibold text-slate-900 transition hover:brightness-110"
+          >
+            {locale === "pl" ? "Uruchom checklistę" : "Start checklist"}
+          </Link>
+          <Link
+            href={`/${locale}/jak-pisac-do-klubow`}
+            className="rounded-full border border-slate-300 px-4 py-3 text-center text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+          >
+            {locale === "pl" ? "Zobacz zasady kontaktu" : "See outreach rules"}
+          </Link>
+        </div>
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <Link
           href={`/${locale}/system-klubowy`}
@@ -200,6 +219,17 @@ function LocalizedHome({ locale }: { locale: SiteLocale }) {
         >
           {c.nav.blog}
         </Link>
+      </div>
+
+      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-700">
+          {locale === "pl" ? "Szybki start" : "Quick start"}
+        </h2>
+        <div className="mt-2 grid gap-2 text-sm text-slate-700 sm:grid-cols-3">
+          <p>1. {locale === "pl" ? "Dane i testy" : "Data and tests"}</p>
+          <p>2. {locale === "pl" ? "Pierwszy kontakt" : "First outreach"}</p>
+          <p>3. {locale === "pl" ? "Follow-up po 2 tyg." : "Follow-up after 2 weeks"}</p>
+        </div>
       </div>
     </section>
   );
@@ -416,7 +446,7 @@ export default function LocaleSlugPage({ params }: { params: Params }) {
       )}
 
       {slug === "blog" && articleSlug && selectedArticle && (
-        <article className="space-y-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+        <article className="space-y-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-10">
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
@@ -442,7 +472,7 @@ export default function LocaleSlugPage({ params }: { params: Params }) {
               {locale === "pl" ? "Aktualizacja" : "Updated"}:{" "}
               {formatArticleDate(selectedArticle.lastModified, locale)}
             </p>
-            <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+            <h1 className="text-2xl font-bold text-slate-900 sm:text-4xl">
               {selectedArticle.title}
             </h1>
             <p className="text-base leading-8 text-slate-700">{selectedArticle.description}</p>

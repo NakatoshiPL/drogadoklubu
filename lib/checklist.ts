@@ -99,7 +99,7 @@ export function buildChecklist(input: ChecklistInput) {
   ];
 
   const mailTemplate = [
-    `Temat: [${input.age}] - [${input.position}] - [Imię zawodnika] - [Obecny klub]`,
+    `Temat: [${input.age}] / [${input.position}] / [Imię zawodnika] / [Obecny klub]`,
     "",
     mailOpeners[input.country],
     "",

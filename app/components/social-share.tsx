@@ -1,11 +1,12 @@
+import { getSiteUrl } from "@/lib/site-url";
+
 type SocialShareProps = {
   path: string;
   title: string;
 };
 
 export function SocialShare({ path, title }: SocialShareProps) {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakdotrzeczdoklubu.pl";
+  const baseUrl = getSiteUrl();
   const url = encodeURIComponent(`${baseUrl}${path}`);
   const text = encodeURIComponent(title);
 

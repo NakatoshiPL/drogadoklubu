@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Piłkarska Ścieżka Rodzica
 
-## Getting Started
+Praktyczny poradnik dla rodziców młodych piłkarzy — jak dotrzeć do klubów w Holandii, Belgii i Polsce.
 
-First, run the development server:
+## Stack
+
+- [Next.js 14](https://nextjs.org/) (App Router)
+- TypeScript
+- Tailwind CSS 4
+- [pdf-lib](https://pdf-lib.js.org/) — generowanie checklisty PDF
+- [Make.com](https://www.make.com/) — webhooki formularzy (kontakt, newsletter, checklista)
+
+## Uruchomienie lokalne
 
 ```bash
+npm install
+cp .env.example .env.local
+# Uzupełnij NEXT_PUBLIC_SITE_URL i webhooki Make.com w .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Strona: [http://localhost:3000](http://localhost:3000) (przekierowanie na `/pl`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Zmienne środowiskowe
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Zmienna | Opis |
+|---------|------|
+| `NEXT_PUBLIC_SITE_URL` | Kanoniczny URL produkcji (np. `https://twojadomena.pl`) |
+| `MAKE_CONTACT_WEBHOOK_URL` | Webhook Make — formularz kontaktowy |
+| `MAKE_NEWSLETTER_WEBHOOK_URL` | Webhook Make — zapis na newsletter |
+| `MAKE_CHECKLIST_WEBHOOK_URL` | Webhook Make — checklista PDF + email |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Opcjonalnie — Google Analytics 4 |
 
-## Learn More
+## Skrypty
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev      # serwer deweloperski
+npm run build    # build produkcyjny
+npm run start    # serwer produkcyjny
+npm run lint     # ESLint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Struktura URL (PL)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `/` → przekierowanie na `/pl`
+- `/pl`, `/pl/blog/...` — wersja wielojęzyczna (aktywna: polski)
+- `/system-klubowy`, `/jak-pisac-do-klubow`, `/przygotowanie-i-testy`, `/faq`, `/kontakt` — pełna treść po polsku
 
-## Deploy on Vercel
+Wersje `/nl`, `/en`, `/de`, `/be` pozostają w kodzie, ale są wyłączone z indeksacji SEO (`noindex`).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Projekt jest przygotowany pod Vercel. Po podpięciu własnej domeny ustaw `NEXT_PUBLIC_SITE_URL` w panelu Vercel i zrób redeploy.

@@ -2,13 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Accordion } from "@/app/components/accordion";
+import { BlogCard } from "@/app/components/blog-card";
 import { SocialShare } from "@/app/components/social-share";
 import { getArticleBySlug, getArticlesForLocale, formatArticleDate } from "@/lib/blog-content";
+import { getArticleTheme } from "@/lib/article-themes";
 import { buildWebPageSchema, siteLastModified } from "@/lib/seo-schema";
+import { buildHreflangAlternates, isLocaleIndexed } from "@/lib/seo-locale";
+import { getSiteUrl } from "@/lib/site-url";
 import {
   isSupportedLocale,
   localeContent,
   localeLabels,
+  multilingualSeoEnabled,
   sharedSlugs,
   supportedLocales,
   type SiteLocale,
@@ -71,14 +76,8 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   const articleSlug = slugParts[1];
   const article = slug === "blog" && articleSlug ? getArticleBySlug(locale, articleSlug) : null;
   const canonicalPath = slugParts.length ? `/${locale}/${slugParts.join("/")}` : `/${locale}`;
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakdotrzeczdoklubu.pl";
-
-  const languages = Object.fromEntries(
-    supportedLocales.map((lang) => [
-      lang,
-      `${baseUrl}/${lang}${slugParts.length ? `/${slugParts.join("/")}` : ""}`,
-    ]),
-  );
+  const baseUrl = getSiteUrl();
+  const languages = buildHreflangAlternates(baseUrl, slugParts);
 
   return {
     title: article?.title ?? localizedMeta[locale].title,
@@ -87,6 +86,9 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
       canonical: `${baseUrl}${canonicalPath}`,
       languages,
     },
+    ...(!isLocaleIndexed(locale)
+      ? { robots: { index: false, follow: false } }
+      : {}),
     openGraph: {
       title: article?.title ?? localizedMeta[locale].title,
       description: article?.description ?? localizedMeta[locale].description,
@@ -142,6 +144,8 @@ function getPageSeoInfo(
 }
 
 function LanguageSwitch({ locale, slugPath }: { locale: SiteLocale; slugPath: string }) {
+  if (!multilingualSeoEnabled) return null;
+
   return (
     <div className="mb-5 flex flex-nowrap gap-2 overflow-x-auto pb-1 sm:mb-6 sm:flex-wrap sm:overflow-visible sm:pb-0">
       {supportedLocales.map((lang) => (
@@ -164,10 +168,16 @@ function LanguageSwitch({ locale, slugPath }: { locale: SiteLocale; slugPath: st
 function LocalizedHome({ locale }: { locale: SiteLocale }) {
   const c = localeContent[locale];
   return (
-    <section className="space-y-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:space-y-8 sm:p-10">
+    <section className="page-shell space-y-8">
       <div className="space-y-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#FF6600]">
+          Poradnik rodzica · NL / BE / PL
+        </p>
         <h1 className="text-2xl font-bold leading-tight text-slate-900 sm:text-4xl">
-          {c.home.title} <span className="text-[#1a2a6c]">{c.home.subtitle}</span>
+          {c.home.title}{" "}
+          <span className="bg-gradient-to-r from-[#21468B] via-[#AE1C28] to-[#FF6600] bg-clip-text text-transparent">
+            {c.home.subtitle}
+          </span>
         </h1>
         <p className="max-w-3xl text-sm leading-7 text-slate-700 sm:text-base sm:leading-8">
           {c.home.intro}
@@ -175,38 +185,44 @@ function LocalizedHome({ locale }: { locale: SiteLocale }) {
         <div className="grid gap-2 sm:flex sm:flex-wrap sm:gap-3">
           <Link
             href={`/${locale}/przygotowanie-i-testy`}
-            className="rounded-full bg-[#f7931e] px-4 py-3 text-center text-sm font-semibold text-slate-900 transition hover:brightness-110"
+            className="rounded-full bg-gradient-to-r from-[#f7931e] to-[#ff6600] px-4 py-3 text-center text-sm font-semibold text-slate-900 shadow-sm transition hover:brightness-110"
           >
             {locale === "pl" ? "Uruchom checklistę" : "Start checklist"}
           </Link>
           <Link
             href={`/${locale}/jak-pisac-do-klubow`}
-            className="rounded-full border border-slate-300 px-4 py-3 text-center text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+            className="rounded-full border border-slate-300 bg-white px-4 py-3 text-center text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
           >
             {locale === "pl" ? "Zobacz zasady kontaktu" : "See outreach rules"}
           </Link>
         </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-3">
         <Link
           href={`/${locale}/system-klubowy`}
-          className="rounded-xl border border-slate-200 bg-slate-50 p-4 hover:bg-slate-100"
+          className="country-card-nl rounded-2xl border p-4 transition hover:shadow-md"
         >
-          {c.nav.system}
+          <p className="text-xs font-bold uppercase tracking-wide text-[#FF6600]">NL</p>
+          <p className="mt-2 font-semibold text-slate-900">{c.nav.system}</p>
         </Link>
         <Link
           href={`/${locale}/jak-pisac-do-klubow`}
-          className="rounded-xl border border-slate-200 bg-slate-50 p-4 hover:bg-slate-100"
+          className="country-card-be rounded-2xl border p-4 transition hover:shadow-md"
         >
-          {c.nav.outreach}
+          <p className="text-xs font-bold uppercase tracking-wide text-[#EF3340]">BE</p>
+          <p className="mt-2 font-semibold text-slate-900">{c.nav.outreach}</p>
         </Link>
         <Link
           href={`/${locale}/przygotowanie-i-testy`}
-          className="rounded-xl border border-slate-200 bg-slate-50 p-4 hover:bg-slate-100"
+          className="country-card-pl rounded-2xl border p-4 transition hover:shadow-md"
         >
-          {c.nav.prep}
+          <p className="text-xs font-bold uppercase tracking-wide text-[#DC143C]">PL</p>
+          <p className="mt-2 font-semibold text-slate-900">{c.nav.prep}</p>
         </Link>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
         <Link
           href={`/${locale}/faq`}
           className="rounded-xl border border-slate-200 bg-slate-50 p-4 hover:bg-slate-100"
@@ -221,7 +237,7 @@ function LocalizedHome({ locale }: { locale: SiteLocale }) {
         </Link>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      <div className="rounded-2xl border border-slate-200 bg-gradient-to-r from-[#1a2a6c]/5 to-[#FF6600]/10 p-4">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-700">
           {locale === "pl" ? "Szybki start" : "Quick start"}
         </h2>
@@ -241,7 +257,7 @@ export default function LocaleSlugPage({ params }: { params: Params }) {
   const slugParts = params.slug ?? [];
   const slug = slugParts[0] ?? "";
   const articleSlug = slugParts[1];
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakdotrzeczdoklubu.pl";
+  const baseUrl = getSiteUrl();
   const faqItems = [
     {
       question: locale === "pl" ? "Kiedy zrobić follow-up?" : "When should I send a follow-up?",
@@ -412,41 +428,34 @@ export default function LocaleSlugPage({ params }: { params: Params }) {
       )}
 
       {slug === "blog" && !articleSlug && (
-        <section className="space-y-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
-          <h1 className="text-3xl font-bold text-slate-900">{localeContent[locale].nav.blog}</h1>
-          <p className="text-base leading-8 text-slate-700">
-            {locale === "pl"
-              ? "Szablony artykułów pod frazy long-tail. Każdy wpis linkuje do stron: system, kontakt, testy i FAQ."
-              : "Long-tail article templates. Each article should internally link to system, outreach, preparation and FAQ pages."}
-          </p>
+        <section className="page-shell space-y-6">
+          <div className="space-y-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#FF6600]">
+              Blog · NL / BE / PL
+            </p>
+            <h1 className="text-3xl font-bold text-slate-900">{localeContent[locale].nav.blog}</h1>
+            <p className="max-w-3xl text-base leading-8 text-slate-700">
+              {locale === "pl"
+                ? "Praktyczne artykuły dla rodzica. Każdy wpis linkuje do stron: system, kontakt, testy i FAQ."
+                : "Long-tail article templates. Each article should internally link to system, outreach, preparation and FAQ pages."}
+            </p>
+          </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {localizedBlogArticles.map((article) => (
-              <article
+              <BlogCard
                 key={article.slug}
-                className="rounded-xl border border-slate-200 bg-slate-50 p-4"
-              >
-                <h2 className="text-lg font-semibold text-slate-900">
-                  <Link href={`/${locale}/blog/${article.slug}`} className="hover:underline">
-                    {article.title}
-                  </Link>
-                </h2>
-                <p className="mt-2 text-sm leading-7 text-slate-700">{article.description}</p>
-                <p className="mt-3 text-xs text-slate-500">
-                  {baseUrl}/{locale}/blog/{article.slug}
-                </p>
-              </article>
+                article={article}
+                href={`/${locale}/blog/${article.slug}`}
+              />
             ))}
-          </div>
-          <div className="rounded-xl border border-slate-200 bg-white p-4 text-sm leading-7 text-slate-700">
-            {locale === "pl"
-              ? "Linkowanie wewnętrzne: każdy artykuł powinien mieć min. 4 linki do /system-klubowy, /jak-pisac-do-klubow, /przygotowanie-i-testy oraz /faq."
-              : "Internal linking rule: each article should include at least 4 links to /system-klubowy, /jak-pisac-do-klubow, /przygotowanie-i-testy and /faq."}
           </div>
         </section>
       )}
 
-      {slug === "blog" && articleSlug && selectedArticle && (
-        <article className="space-y-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-10">
+      {slug === "blog" && articleSlug && selectedArticle && (() => {
+        const theme = getArticleTheme(selectedArticle.theme);
+        return (
+        <article className={`page-shell relative overflow-hidden space-y-6 border-l-4 ${theme.border}`}>
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
@@ -454,6 +463,10 @@ export default function LocaleSlugPage({ params }: { params: Params }) {
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+          />
+          <div
+            className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r opacity-90 ${theme.gradient}`}
+            aria-hidden
           />
           <nav className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
             <Link href={`/${locale}`} className="hover:underline">
@@ -466,9 +479,14 @@ export default function LocaleSlugPage({ params }: { params: Params }) {
             <span>/</span>
             <span className="text-slate-700">{selectedArticle.title}</span>
           </nav>
-          <header className="space-y-3">
+          <header className="space-y-4">
+            <span
+              className={`inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ring-1 ring-inset ${theme.badge}`}
+            >
+              {theme.label}
+            </span>
             <p className="text-sm font-medium text-slate-500">
-              {localeContent[locale].nav.blog} · {selectedArticle.readingMinutes} min ·{" "}
+              {selectedArticle.readingMinutes} min ·{" "}
               {locale === "pl" ? "Aktualizacja" : "Updated"}:{" "}
               {formatArticleDate(selectedArticle.lastModified, locale)}
             </p>
@@ -478,7 +496,7 @@ export default function LocaleSlugPage({ params }: { params: Params }) {
             <p className="text-base leading-8 text-slate-700">{selectedArticle.description}</p>
           </header>
 
-          <section className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+          <section className="rounded-xl border border-slate-200 p-4" style={{ backgroundColor: theme.accentSoft }}>
             <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-700">
               {locale === "pl" ? "Spis treści" : "Table of contents"}
             </h2>
@@ -487,7 +505,7 @@ export default function LocaleSlugPage({ params }: { params: Params }) {
                 <a
                   key={section.heading}
                   href={`#${toAnchorId(section.heading)}`}
-                  className="hover:text-[#1a2a6c] hover:underline"
+                  className={`hover:underline ${theme.toc}`}
                 >
                   {section.heading}
                 </a>
@@ -515,22 +533,24 @@ export default function LocaleSlugPage({ params }: { params: Params }) {
               Linkowanie wewnętrzne
             </h3>
             <div className="mt-3 flex flex-wrap gap-3 text-sm">
-              <Link href={`/${locale}/system-klubowy`} className="text-[#1a2a6c] hover:underline">
+              <Link href={`/${locale}/system-klubowy`} className="hover:underline" style={{ color: theme.accent }}>
                 {localeContent[locale].nav.system}
               </Link>
               <Link
                 href={`/${locale}/jak-pisac-do-klubow`}
-                className="text-[#1a2a6c] hover:underline"
+                className="hover:underline"
+                style={{ color: theme.accent }}
               >
                 {localeContent[locale].nav.outreach}
               </Link>
               <Link
                 href={`/${locale}/przygotowanie-i-testy`}
-                className="text-[#1a2a6c] hover:underline"
+                className="hover:underline"
+                style={{ color: theme.accent }}
               >
                 {localeContent[locale].nav.prep}
               </Link>
-              <Link href={`/${locale}/faq`} className="text-[#1a2a6c] hover:underline">
+              <Link href={`/${locale}/faq`} className="hover:underline" style={{ color: theme.accent }}>
                 {localeContent[locale].nav.faq}
               </Link>
             </div>
@@ -544,7 +564,7 @@ export default function LocaleSlugPage({ params }: { params: Params }) {
               {selectedArticle.keywords.map((keyword) => (
                 <span
                   key={keyword}
-                  className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-xs text-slate-700"
+                  className={`rounded-full px-3 py-1 text-xs ring-1 ring-inset ${theme.chip}`}
                 >
                   {keyword}
                 </span>
@@ -552,27 +572,26 @@ export default function LocaleSlugPage({ params }: { params: Params }) {
             </div>
           </section>
 
-          <section className="space-y-2">
+          <section className="space-y-3">
             <h3 className="text-lg font-semibold text-slate-900">
               {locale === "pl" ? "Czytaj też" : "Read also"}
             </h3>
-            <div className="space-y-2">
+            <div className="grid gap-3 sm:grid-cols-2">
               {localizedBlogArticles
                 .filter((article) => article.slug !== selectedArticle.slug)
+                .slice(0, 4)
                 .map((article) => (
-                  <Link
+                  <BlogCard
                     key={article.slug}
+                    article={article}
                     href={`/${locale}/blog/${article.slug}`}
-                    className="block rounded-lg border border-slate-200 bg-white p-3 text-sm text-slate-700 hover:bg-slate-50"
-                  >
-                    <p className="font-semibold text-slate-900">{article.title}</p>
-                    <p className="mt-1 text-xs leading-6 text-slate-600">{article.description}</p>
-                  </Link>
+                  />
                 ))}
             </div>
           </section>
         </article>
-      )}
+        );
+      })()}
 
       {slug === "blog" && articleSlug && !selectedArticle && notFound()}
       {!sharedSlugs.includes(slug as (typeof sharedSlugs)[number]) && !articleSlug && notFound()}

@@ -39,7 +39,7 @@ export default function JakPisacDoKlubowPage() {
         </h2>
         <p className="text-base leading-8 text-slate-700">
           Jeden ekran, nie więcej. Trener czy skaut czyta to między innymi
-          obowiązkami — długi tekst ląduje w koszu.
+          obowiązkami. Długi tekst ląduje w koszu.
         </p>
       </div>
 
@@ -80,7 +80,7 @@ export default function JakPisacDoKlubowPage() {
         <h2 className="text-xl font-semibold text-slate-900">
           Przykładowy szkielet maila (NL/BE)
         </h2>
-        <pre className="overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs leading-6 text-slate-800 sm:text-sm">{`Onderwerp: [Leeftijd] - [Positie] - [Naam speler] - [Huidige club]
+        <pre className="overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs leading-6 text-slate-800 sm:text-sm">{`Onderwerp: [Leeftijd] / [Positie] / [Naam speler] / [Huidige club]
 
 Beste heer/mevrouw [naam scout],
 
@@ -110,7 +110,7 @@ Met vriendelijke groet,
         <h2 className="text-xl font-semibold text-slate-900">
           Przykładowy szkielet maila (PL)
         </h2>
-        <pre className="overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs leading-6 text-slate-800 sm:text-sm">{`Temat: [Wiek] - [Pozycja] - [Imię dziecka] - [Obecny klub]
+        <pre className="overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs leading-6 text-slate-800 sm:text-sm">{`Temat: [Wiek] / [Pozycja] / [Imię dziecka] / [Obecny klub]
 
 Szanowni Państwo,
 

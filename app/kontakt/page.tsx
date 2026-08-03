@@ -7,16 +7,33 @@ export const metadata: Metadata = {
     "Formularz kontaktowy i newsletter dla rodziców młodych piłkarzy.",
 };
 
-export default function KontaktPage() {
+const successMessage = "Dziękujemy, odezwiemy się wkrótce.";
+
+type PageProps = {
+  searchParams?: {
+    contact?: string;
+    newsletter?: string;
+  };
+};
+
+export default function KontaktPage({ searchParams }: PageProps) {
+  const showContactSuccess = searchParams?.contact === "ok";
+  const showNewsletterSuccess = searchParams?.newsletter === "ok";
+
   return (
     <div className="grid gap-6 lg:grid-cols-2">
+      {(showContactSuccess || showNewsletterSuccess) && (
+        <p className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 lg:col-span-2">
+          {successMessage}
+        </p>
+      )}
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
         <h1 className="text-3xl font-bold text-slate-900">Kontakt</h1>
         <p className="mt-4 text-base leading-8 text-slate-700">
           Masz pytanie o swoją sytuację?
         </p>
         <p className="mt-4 text-base leading-8 text-slate-700">
-          Napisz — odpowiadam na podstawie własnego doświadczenia, nie jako
+          Napisz. Odpowiadam na podstawie własnego doświadczenia, nie jako
           agencja czy pośrednik.
         </p>
 

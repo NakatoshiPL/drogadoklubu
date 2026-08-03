@@ -4,6 +4,7 @@ import { Analytics } from "./components/analytics";
 import { MobileBottomCta } from "./components/mobile-cta";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,9 +18,7 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakdotrzeczdoklubu.pl",
-  ),
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: "Poradnik dla rodziców młodych piłkarzy",
     template: "%s | Poradnik dla rodziców młodych piłkarzy",
@@ -51,7 +50,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jakdotrzeczdoklubu.pl";
+  const baseUrl = getSiteUrl();
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -64,7 +63,7 @@ export default function RootLayout({
     "@type": "WebSite",
     name: "Pilkarska Sciezka Rodzica",
     url: baseUrl,
-    inLanguage: ["pl", "nl", "en", "de"],
+    inLanguage: ["pl"],
   };
 
   return (

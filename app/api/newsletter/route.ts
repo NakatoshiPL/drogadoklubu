@@ -1,24 +1,14 @@
 import { NextResponse } from "next/server";
+import { sendMakeWebhook } from "@/lib/webhook";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
   const payload = {
+    type: "newsletter",
     email: String(formData.get("newsletter-email") ?? ""),
-    source: "newsletter-form",
   };
 
-  const webhookUrl = process.env.MAKE_NEWSLETTER_WEBHOOK_URL;
-
-  if (webhookUrl) {
-    await fetch(webhookUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-      cache: "no-store",
-    });
-  } else {
-    console.info("MAKE_NEWSLETTER_WEBHOOK_URL is missing. Payload:", payload);
-  }
+  await sendMakeWebhook(process.env.MAKE_WEBHOOK_URL, payload);
 
   return NextResponse.redirect(new URL("/kontakt?newsletter=ok", request.url));
 }

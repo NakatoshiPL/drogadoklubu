@@ -3,6 +3,9 @@ export type SiteLocale = (typeof supportedLocales)[number];
 
 export const defaultLocale: SiteLocale = "pl";
 
+/** Set to true to index all locales in sitemap/hreflang and show language switcher. */
+export const multilingualSeoEnabled = false;
+
 export const localeLabels: Record<SiteLocale, string> = {
   pl: "Polski",
   nl: "Nederlands",

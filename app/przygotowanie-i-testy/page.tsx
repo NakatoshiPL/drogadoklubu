@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { SocialShare } from "../components/social-share";
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default function PrzygotowanieITestyPage({ searchParams }: PageProps) {
       </h2>
       <p className="text-base leading-8 text-slate-700">
         Testy fizyczne (szybkość, zwinność, wytrzymałość) dają klubowi coś,
-        czego nie da żadna wiadomość — konkretne, porównywalne liczby.
+        czego nie da żadna wiadomość: konkretne, porównywalne liczby.
         Niezależne testy piłkarskie (np. testypilkarske.pl) to jeden ze
         sposobów na zdobycie takich danych przed pierwszym kontaktem z klubem.
       </p>
@@ -47,8 +48,16 @@ export default function PrzygotowanieITestyPage({ searchParams }: PageProps) {
       </div>
 
       <p className="text-base leading-8 text-slate-700">
-        [TU WSTAWIĘ: rozszerzony opis procesu testów]
+        Masz już raport z testów lub obserwacji meczowej? Zobacz osobną rubrykę z
+        interpretacją ocen i kryteriów dla każdej pozycji. Pomoże zrozumieć, co
+        oznaczają poszczególne wyniki, zanim napiszesz do klubu.
       </p>
+      <Link
+        href="/interpretacja-raportu"
+        className="inline-block text-sm font-semibold text-[#1a2a6c] hover:underline"
+      >
+        Interpretacja raportu indywidualnego
+      </Link>
 
       <div className="space-y-4 rounded-xl border border-slate-200 bg-slate-50 p-5">
         <h2 className="text-xl font-semibold text-slate-900">
@@ -61,7 +70,7 @@ export default function PrzygotowanieITestyPage({ searchParams }: PageProps) {
         </p>
         {isChecklistSent && (
           <p className="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
-            Checklista została wygenerowana i przekazana do wysyłki.
+            Dziękujemy, odezwiemy się wkrótce.
           </p>
         )}
         <form

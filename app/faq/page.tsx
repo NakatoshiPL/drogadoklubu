@@ -5,34 +5,34 @@ import { SocialShare } from "../components/social-share";
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Najczesciej zadawane pytania rodziców mlodych pilkarzy - placeholdery do uzupelnienia.",
+    "Najczęściej zadawane pytania rodziców młodych piłkarzy.",
 };
 
 const faqItems = [
   {
     question: "Ile czasu czekać na odpowiedź od klubu?",
     answer:
-      "Zwykle 1-2 tygodnie. Kluby dostają dziesiątki maili tygodniowo. Jeśli po 2 tygodniach brak odpowiedzi — wyślij krótki follow-up (sam fakt, bez zbytniego nacisku).",
+      "Zwykle 1-2 tygodnie. Kluby dostają dziesiątki maili tygodniowo. Jeśli po 2 tygodniach brak odpowiedzi, wyślij krótki follow-up (sam fakt, bez zbytniego nacisku).",
   },
   {
     question: "Co jeśli klub w ogóle nie odpowiada?",
     answer:
-      "Często to nie znaczy „nie”, tylko „nie mamy teraz czasu”. Wyślij przypomnienie po 2 tygodniach, a jeśli nadal cisza — spróbuj przez inny kanał (telefon do sekretariatu, LinkedIn do skauta).",
+      "Często to nie znaczy „nie”, tylko „nie mamy teraz czasu”. Wyślij przypomnienie po 2 tygodniach, a jeśli nadal cisza, spróbuj przez inny kanał (telefon do sekretariatu, LinkedIn do skauta).",
   },
   {
     question: "Czy pisać do kilku klubów naraz, czy pojedynczo?",
     answer:
-      "Naraz. To nie jest randka — to proces rekrutacyjny. Kluby nie mają ze sobą kontaktu w tej sprawie. Wysyłaj do 5-10 klubów jednocześnie i zobacz, kto odpowie.",
+      "Naraz. To nie jest randka, to proces rekrutacyjny. Kluby nie mają ze sobą kontaktu w tej sprawie. Wysyłaj do 5-10 klubów jednocześnie i zobacz, kto odpowie.",
   },
   {
     question: "Czy warto korzystać z agencji pośredniczących?",
     answer:
-      "Jeśli agencja ma realne kontakty i sprawdzonych skautów — tak. Ale większość to pośrednicy, którzy robią to samo co Ty, tylko drożej. Przewaga poradnika: rodzic sam ogarnia temat bez wydawania tysięcy euro.",
+      "Jeśli agencja ma realne kontakty i sprawdzonych skautów, tak. Ale większość to pośrednicy, którzy robią to samo co Ty, tylko drożej. Przewaga poradnika: rodzic sam ogarnia temat bez wydawania tysięcy euro.",
   },
   {
     question: "W jakim wieku najlepiej zacząć kontakt z klubami zagranicznymi?",
     answer:
-      "Jeśli dziecko ma potencjał, w Holandii i Belgii warto zaczynać wcześniej, nawet od młodszych roczników, bo kluby obserwują zawodników przed etapem U15. W Polsce proces często wygląda inaczej: więcej zależy od lokalnego klubu, relacji i aktualnych naborów. Im wcześniej, tym lepiej — ale nigdy nie jest za późno.",
+      "Jeśli dziecko ma potencjał, w Holandii i Belgii warto zaczynać wcześniej, nawet od młodszych roczników, bo kluby obserwują zawodników przed etapem U15. W Polsce proces często wygląda inaczej: więcej zależy od lokalnego klubu, relacji i aktualnych naborów. Im wcześniej, tym lepiej, ale nigdy nie jest za późno.",
   },
   {
     question: "Czy bariera językowa to problem?",

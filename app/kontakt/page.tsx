@@ -27,12 +27,12 @@ export default function KontaktPage({ searchParams }: PageProps) {
           {successMessage}
         </p>
       )}
-      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
-        <h1 className="text-3xl font-bold text-slate-900">Kontakt</h1>
-        <p className="mt-4 text-base leading-8 text-slate-700">
+      <section className="page-shell">
+        <h1 className="text-3xl font-semibold tracking-tight text-[var(--brand)]">Kontakt</h1>
+        <p className="mt-4 text-base leading-8 text-[var(--muted)]">
           Masz pytanie o swoją sytuację?
         </p>
-        <p className="mt-4 text-base leading-8 text-slate-700">
+        <p className="mt-4 text-base leading-8 text-[var(--muted)]">
           Napisz. Odpowiadam na podstawie własnego doświadczenia, nie jako
           agencja czy pośrednik.
         </p>
@@ -111,16 +111,16 @@ export default function KontaktPage({ searchParams }: PageProps) {
 
           <button
             type="submit"
-            className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
+            className="rounded-lg bg-[var(--brand)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--brand-hover)]"
           >
             Wyślij wiadomość
           </button>
         </form>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
-        <h2 className="text-2xl font-semibold text-slate-900">Newsletter</h2>
-        <p className="mt-4 text-base leading-8 text-slate-700">
+      <section className="page-shell">
+        <h2 className="text-2xl font-semibold text-[var(--brand)]">Newsletter</h2>
+        <p className="mt-4 text-base leading-8 text-[var(--muted)]">
           Chcesz dostać checklistę PDF z krokami z tego poradnika? Zostaw e-mail
           poniżej.
         </p>
@@ -142,7 +142,7 @@ export default function KontaktPage({ searchParams }: PageProps) {
           />
           <button
             type="submit"
-            className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
+            className="rounded-lg bg-[var(--brand)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--brand-hover)]"
           >
             Zapisz się
           </button>

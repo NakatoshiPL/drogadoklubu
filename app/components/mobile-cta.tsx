@@ -73,12 +73,12 @@ export function MobileBottomCta() {
   };
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 p-3 backdrop-blur sm:hidden">
-      <div className="mx-auto flex w-full max-w-6xl gap-2">
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-[var(--border)] bg-white/95 p-3 backdrop-blur sm:hidden">
+      <div className="mx-auto flex w-full max-w-5xl gap-2">
         <Link
           href={cta.primaryHref}
           onClick={() => handleClick("primary", cta.primaryLabel, cta.primaryHref)}
-          className="flex-1 rounded-full bg-[#f7931e] px-4 py-3 text-center text-sm font-semibold text-slate-900"
+          className="btn-primary flex-1 !py-3"
         >
           {cta.primaryLabel}
         </Link>
@@ -87,7 +87,7 @@ export function MobileBottomCta() {
           onClick={() =>
             handleClick("secondary", cta.secondaryLabel, cta.secondaryHref)
           }
-          className="flex-1 rounded-full border border-slate-300 bg-white px-4 py-3 text-center text-sm font-semibold text-slate-800"
+          className="btn-secondary flex-1 !py-3"
         >
           {cta.secondaryLabel}
         </Link>

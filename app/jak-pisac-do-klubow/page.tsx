@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 
 export default function JakPisacDoKlubowPage() {
   return (
-    <section className="space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
-      <h1 className="text-3xl font-bold text-slate-900">
+    <section className="page-shell space-y-6">
+      <h1 className="text-3xl font-semibold tracking-tight text-[var(--brand)]">
         Jak napisać do klubu, żeby dostać odpowiedź
       </h1>
-      <p className="text-base leading-8 text-slate-700">
+      <p className="text-base leading-8 text-[var(--muted)]">
         To najważniejsza część tego poradnika. Sposób, w jaki się odzywasz do
         klubu, decyduje o tym, czy ktoś w ogóle przeczyta Twoją wiadomość do
         końca.

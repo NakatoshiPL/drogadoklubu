@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 function CriteriaList({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
-      <h4 className="text-sm font-semibold uppercase tracking-wide text-[#1a2a6c]">
+      <h4 className="text-sm font-semibold uppercase tracking-wide text-[var(--brand)]">
         {title}
       </h4>
       <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-7 text-slate-700">
@@ -39,13 +39,11 @@ function CriteriaList({ title, items }: { title: string; items: string[] }) {
 export default function InterpretacjaRaportuPage() {
   return (
     <div className="space-y-8">
-      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
-        <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-          Obserwacja podczas meczu
-        </p>
-        <h1 className="mt-2 text-3xl font-bold text-slate-900">{reportIntro.title}</h1>
-        <p className="mt-1 text-lg font-medium text-[#1a2a6c]">{reportIntro.subtitle}</p>
-        <p className="mt-5 max-w-3xl text-base leading-8 text-slate-700">
+      <section className="page-shell space-y-3">
+        <p className="eyebrow">Obserwacja podczas meczu</p>
+        <h1 className="text-3xl font-semibold tracking-tight text-[var(--brand)]">{reportIntro.title}</h1>
+        <p className="text-lg font-medium text-[var(--accent)]">{reportIntro.subtitle}</p>
+        <p className="mt-5 max-w-3xl text-base leading-8 text-[var(--muted)]">
           {reportIntro.lead}
         </p>
         <p className="mt-4 text-sm text-slate-600">
@@ -54,7 +52,7 @@ export default function InterpretacjaRaportuPage() {
             href="https://www.testypilkarskie.pl"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-[#1a2a6c] hover:underline"
+            className="font-medium text-[var(--accent)] hover:underline"
           >
             testypilkarskie.pl
           </a>
@@ -129,23 +127,17 @@ export default function InterpretacjaRaportuPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-[#1a2a6c]/20 bg-[#1a2a6c]/5 p-6">
-        <h2 className="text-lg font-semibold text-slate-900">Co dalej?</h2>
-        <p className="mt-3 text-base leading-8 text-slate-700">
+      <section className="border border-[var(--border)] bg-[var(--accent-soft)] p-6">
+        <h2 className="text-lg font-semibold text-[var(--brand)]">Co dalej?</h2>
+        <p className="mt-3 text-base leading-8 text-[var(--muted)]">
           Raport to punkt wyjścia, a nie werdykt końcowy. Połącz go z przygotowaniem
           materiałów do klubu i spokojnym, uporządkowanym kontaktem.
         </p>
         <div className="mt-4 flex flex-wrap gap-3 text-sm font-semibold">
-          <Link
-            href="/przygotowanie-i-testy"
-            className="rounded-full bg-[#f7931e] px-4 py-2 text-slate-900 transition hover:brightness-110"
-          >
+          <Link href="/przygotowanie-i-testy" className="btn-primary">
             Przygotowanie i testy
           </Link>
-          <Link
-            href="/jak-pisac-do-klubow"
-            className="rounded-full border border-slate-300 px-4 py-2 text-slate-700 transition hover:bg-white"
-          >
+          <Link href="/jak-pisac-do-klubow" className="btn-secondary">
             Zasady kontaktu z klubem
           </Link>
         </div>

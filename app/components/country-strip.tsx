@@ -4,20 +4,15 @@ type CountryStripProps = {
 };
 
 export function CountryStrip({ className = "", size = "md" }: CountryStripProps) {
-  const h = size === "sm" ? "h-1" : "h-1.5";
+  const h = size === "sm" ? "h-0.5" : "h-1";
   return (
     <div
-      className={`flex w-full overflow-hidden rounded-full ${h} ${className}`}
+      className={`flex w-full overflow-hidden ${h} ${className}`}
       aria-hidden
     >
-      <span className="h-full flex-1 bg-[#21468B]" title="Holandia" />
-      <span className="h-full flex-1 bg-[#AE1C28]" />
-      <span className="h-full flex-1 bg-white" />
-      <span className="h-full flex-1 bg-[#EF3340]" title="Belgia" />
-      <span className="h-full flex-1 bg-[#FDDA24]" />
-      <span className="h-full flex-1 bg-black" />
-      <span className="h-full flex-1 bg-white" title="Polska" />
-      <span className="h-full flex-1 bg-[#DC143C]" />
+      <span className="h-full flex-[2] bg-[var(--nl)]" title="Holandia" />
+      <span className="h-full flex-[2] bg-[var(--be)]" title="Belgia" />
+      <span className="h-full flex-[2] bg-[var(--pl)]" title="Polska" />
     </div>
   );
 }

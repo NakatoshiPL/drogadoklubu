@@ -44,9 +44,9 @@ const faqItems = [
 export default function FaqPage() {
   return (
     <section className="space-y-6">
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
-        <h1 className="text-3xl font-bold text-slate-900">FAQ</h1>
-        <p className="mt-4 text-base leading-8 text-slate-700">
+      <div className="page-shell">
+        <h1 className="text-3xl font-semibold tracking-tight text-[var(--brand)]">FAQ</h1>
+        <p className="mt-4 text-base leading-8 text-[var(--muted)]">
           Najczęstsze pytania rodziców młodych piłkarzy.
         </p>
       </div>

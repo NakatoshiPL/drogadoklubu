@@ -19,14 +19,14 @@ export default function PrzygotowanieITestyPage({ searchParams }: PageProps) {
   const isChecklistSent = searchParams?.checklist === "sent";
 
   return (
-    <section className="space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
-      <h1 className="text-3xl font-bold text-slate-900">
+    <section className="page-shell space-y-6">
+      <h1 className="text-3xl font-semibold tracking-tight text-[var(--brand)]">
         Zanim wyślesz pierwszy kontakt: co przygotować
       </h1>
-      <h2 className="text-xl font-semibold text-slate-900">
+      <h2 className="text-xl font-semibold text-[var(--brand)]">
         Obiektywne dane ważą więcej niż opinia rodzica
       </h2>
-      <p className="text-base leading-8 text-slate-700">
+      <p className="text-base leading-8 text-[var(--muted)]">
         Testy fizyczne (szybkość, zwinność, wytrzymałość) dają klubowi coś,
         czego nie da żadna wiadomość: konkretne, porównywalne liczby.
         Niezależne testy piłkarskie (np. testypilkarske.pl) to jeden ze
@@ -34,10 +34,10 @@ export default function PrzygotowanieITestyPage({ searchParams }: PageProps) {
       </p>
 
       <div className="space-y-3">
-        <h2 className="text-xl font-semibold text-slate-900">
+        <h2 className="text-xl font-semibold text-[var(--brand)]">
           Co warto mieć przygotowane:
         </h2>
-        <ul className="list-disc space-y-2 pl-6 text-base leading-8 text-slate-700">
+        <ul className="list-disc space-y-2 pl-6 text-base leading-8 text-[var(--muted)]">
           <li>Aktualne dane fizyczne i wyniki testów</li>
           <li>Jedno dobre zdjęcie (nie ze smartfona w słabym świetle)</li>
           <li>
@@ -47,14 +47,14 @@ export default function PrzygotowanieITestyPage({ searchParams }: PageProps) {
         </ul>
       </div>
 
-      <p className="text-base leading-8 text-slate-700">
+      <p className="text-base leading-8 text-[var(--muted)]">
         Masz już raport z testów lub obserwacji meczowej? Zobacz osobną rubrykę z
         interpretacją ocen i kryteriów dla każdej pozycji. Pomoże zrozumieć, co
         oznaczają poszczególne wyniki, zanim napiszesz do klubu.
       </p>
       <Link
         href="/interpretacja-raportu"
-        className="inline-block text-sm font-semibold text-[#1a2a6c] hover:underline"
+        className="inline-block text-sm font-semibold text-[var(--accent)] hover:underline"
       >
         Interpretacja raportu indywidualnego
       </Link>
@@ -152,7 +152,7 @@ export default function PrzygotowanieITestyPage({ searchParams }: PageProps) {
           <div className="flex items-end">
             <button
               type="submit"
-              className="w-full rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
+              className="w-full rounded-lg bg-[var(--brand)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--brand-hover)]"
             >
               Wyślij checklistę na email
             </button>

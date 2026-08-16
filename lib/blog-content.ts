@@ -46,14 +46,14 @@ const plArticles: BlogArticle[] = [
       "kiedy pisać do klubu piłkarskiego",
     ],
     publishedAt: "2026-07-05",
-    lastModified: "2026-07-08",
+    lastModified: "2026-08-03",
     theme: "nl",
     sections: [
       {
         heading: "Dlaczego timing kontaktu jest ważniejszy niż perfekcyjny mail",
         paragraphs: [
           "W praktyce o powodzeniu często decyduje nie tyle sama treść wiadomości, ile moment, w którym trafia do klubu. W okresie przerwy wakacyjnej wiele działów sportowych działa wolniej, a trenerzy i skauci wracają do regularnej pracy dopiero po starcie nowego cyklu.",
-          "Dlatego rodzic powinien myśleć o procesie jak o kalendarzu działań: przygotowanie danych, pierwszy kontakt, follow-up i druga fala zgłoszeń. To zmniejsza chaos i poprawia skuteczność.",
+          "Dlatego rodzic powinien myśleć o procesie jak o kalendarzu działań: przygotowanie danych, pierwszy kontakt, follow-up i druga fala zgłoszeń. To zmniejsza chaos i poprawia skuteczność. Aktualny przegląd wydarzeń na lato–jesień 2026 znajdziesz w artykule o naborach sezonowych.",
         ],
       },
       {
@@ -374,6 +374,70 @@ const plArticles: BlogArticle[] = [
       },
     ],
   },
+  {
+    slug: "wydarzenia-naborowe-lato-jesien-2026",
+    title: "Lato–jesień 2026: co się dzieje w naborach NL, BE i PL",
+    description:
+      "Aktualne okno po wakacjach: open days, probeertraining, lokalne nabory w Polsce i zmiany Play to Grow w Belgii — co warto śledzić jako rodzic.",
+    readingMinutes: 9,
+    keywords: [
+      "nabór akademia 2026",
+      "open day jeugdopleiding",
+      "probeertraining Holandia",
+      "Play to Grow Belgia",
+      "testy do akademii Polska sierpień",
+    ],
+    publishedAt: "2026-08-03",
+    lastModified: "2026-08-03",
+    theme: "guide",
+    sections: [
+      {
+        heading: "Dlaczego właśnie teraz (sierpień–wrzesień)",
+        paragraphs: [
+          "Po przerwie letniej kluby w Holandii i Belgii wracają do rytmu: kadry się domykają, trenerzy wracają z urlopów, a rodzice z zagranicy często dopiero wtedy zaczynają pisać. To jedno z najlepszych okien na spokojny, uporządkowany kontakt — pod warunkiem, że masz gotowy profil zawodnika, a nie dopiero zbierasz materiały.",
+          "W Polsce kalendarz jest bardziej lokalny: część dużych naborów (np. majowe gry testowe w Warszawie) już za nami, ale wiele akademii prowadzi uzupełniające testy i treningi otwarte aż do startu sezonu i w trakcie rundy. Warto sprawdzać strony klubów, nie tylko media społecznościowe pośredników.",
+        ],
+      },
+      {
+        heading: "Holandia: open day ≠ probeertraining",
+        paragraphs: [
+          "W sierpniu 2026 w NL dużo się dzieje wokół klubów, ale nie wszystko to nabór do jeugdopleiding. Przykład: Ajax Open Dag (3 sierpnia, Johan Cruijff ArenA) to dzień dla kibiców — aktywności wokół stadionu, prezentacja drużyn, otwarty trening. To dobra okazja zobaczyć kulturę klubu, ale nie zastępuje oficjalnego procesu scoutingowego.",
+          "Inny typ wydarzeń to lokalne voetbaldagen / kampy wakacyjne przy amatorskich klubach (np. Clubvoetbaldagen: Doetinchem 5–6.08, LSVV Zuid-Scharwoude 12–14.08, VVO Velp 19–21.08, Blauw Geel ’55 Ede 26–28.08). Dla dzieci 6–13 lat to głównie rozwój i radość z gry, nie gwarancja wejścia do BVO. Traktuj je jako trening i networking, nie jako „kontrakt z akademią”.",
+          "Jeśli szukasz realnego wejścia do struktury akademii, celuj w oficjalne open talententraining / probeertraining publikowane przez sam klub (partnerzy Eredivisie, silne amatorskie top-35). Od września wracają też regularne szkoły niedzielne i dodatkowe bloki treningowe przy klubach lokalnych — warto zapisać daty startu sezonu i pytać o listę oczekujących, a nie tylko o „test za tydzień”.",
+        ],
+      },
+      {
+        heading: "Belgia: Play to Grow zmienia reguły kontaktu",
+        paragraphs: [
+          "Pro League wdrożyła plan „Play to Grow”: mocniejszy nacisk na przepływ własnej młodzieży do A-kern, reforma licencji młodzieżowych (Elite 1 / Elite 2), podniesienie wieku kontraktu młodzieżowego z U18 do U19 oraz obowiązkowe zasady etycznego scoutingu.",
+          "Dla rodzica najważniejsze praktycznie: scout ma obowiązek zgłosić kontakt do klubu macierzystego zawodnika, a aktywność scoutingu ma być bardziej transparentna (m.in. scouting badges / rejestracja). To oznacza, że „cichy” cold call do dziecka z pominięciem obecnego klubu jest coraz bardziej ryzykowne reputacyjnie — i słusznie.",
+          "W praktyce: trzymaj jeden kanał kontaktu z akademią, nie obchodź trenera obecnej drużyny, a w mailu podawaj aktualny klub i kategorię U. Belgia nadal reaguje wolniej niż NL — follow-up po ok. 14 dniach, bez paniki.",
+        ],
+      },
+      {
+        heading: "Polska: nabory uzupełniające i lokalna dynamika",
+        paragraphs: [
+          "W Polsce wiele dużych, jednorazowych naborów na sezon 2026/2027 odbyło się wiosną (np. otwarte gry testowe Legii Soccer Schools / Akademii, dni naborowe BVB, testy do klas sportowych). Latem i jesienią częściej pojawiają się nabory uzupełniające: treningi otwarte, formularze online i selekcja po zgłoszeniu.",
+          "Przykład lokalny: akademie ogłaszają otwarte nabory do drużyn ligowych (np. roczniki U12–U19) z rejestracją formularzem i późniejszym zaproszeniem na test — bez jednej ogólnopolskiej daty. To właśnie typowa polska dynamika: mniej centralnego kalendarza, więcej decyzji sztabu na miejscu.",
+          "Jeśli dziecko gra w CLJ lub mocnej lidze wojewódzkiej, sierpień–wrzesień to dobry moment na aktualizację profilu (minuty, pozycja, wyniki testów) i spokojną falę maili do 5–8 klubów, zamiast czekania na „wielki dzień testowy” w mediach.",
+        ],
+      },
+      {
+        heading: "Jak odróżnić wartościowe wydarzenie od marketingu",
+        paragraphs: [
+          "Zielone światło: wydarzenie na oficjalnej stronie klubu / akademii, jasny wiek i kategoria U, bez obietnicy kontraktu, z realnym sztabem szkoleniowym i jedną ścieżką rejestracji. Czerwone światło: płatne „talent days” bez powiązania z konkretnym klubem, obietnice szybkiego transferu, masowe maile od pośredników, brak daty urodzenia / pozycji w briefie.",
+          "PFSA i podobne trial days w UK bywają użyteczne jako ekspozycja przed skautami, ale to inny ekosystem niż NL/BE/PL. Nie mieszaj ich z planem kontaktu do jeugdopleiding — trzymaj osobną zakładkę w tabeli statusów.",
+        ],
+      },
+      {
+        heading: "Plan 21 dni od dziś",
+        paragraphs: [
+          "Dni 1–3: zaktualizuj profil (wiek, pozycja, klub, minuty, 2–3 wyniki testów, zdjęcie). Dni 4–7: wypisz 6 klubów realistycznych + 2 ambitne w NL/BE/PL. Dni 8–14: pierwsza fala maili (1 osoba na klub). Dni 15–21: jeden follow-up tam, gdzie cisza, i zapis statusów.",
+          "Równolegle: sprawdź lokalne open training / nabór uzupełniający w PL oraz oficjalne komunikaty akademii w NL/BE na start sezonu. Nie zapisuj dziecka na trzy płatne eventy w jednym tygodniu — lepiej jeden sensowny kontakt klubowy i spokojna gra w obecnej drużynie.",
+        ],
+      },
+    ],
+  },
 ];
 
 const shortNlArticles: BlogArticle[] = [
@@ -428,6 +492,24 @@ const shortNlArticles: BlogArticle[] = [
       },
     ],
   },
+  {
+    slug: "wydarzenia-naborowe-lato-jesien-2026",
+    title: "Zomer–najaar 2026: werving in NL, BE en PL",
+    description:
+      "Wat speelt er nu: open dagen, probeertraining, lokale naboren en Play to Grow.",
+    readingMinutes: 3,
+    keywords: ["open dag jeugdopleiding", "probeertraining 2026", "Play to Grow"],
+    publishedAt: "2026-08-03",
+    lastModified: "2026-08-03",
+    sections: [
+      {
+        heading: "Kern",
+        paragraphs: [
+          "Na de zomer is het recruitmentwindow open. Onderscheid fan-open dagen van echte probeertraining. In België gelden strengere scoutingregels via Play to Grow. In Polen: lokale aanvullende naboren bijhouden, niet alleen grote lente-events.",
+        ],
+      },
+    ],
+  },
 ];
 
 const shortEnArticles: BlogArticle[] = [
@@ -478,6 +560,28 @@ const shortEnArticles: BlogArticle[] = [
         heading: "Safe rule",
         paragraphs: [
           "Send one short follow-up after around 2 weeks and keep one contact person per club.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "wydarzenia-naborowe-lato-jesien-2026",
+    title: "Summer–autumn 2026: recruitment events NL/BE/PL",
+    description:
+      "What is happening now: open days, trial sessions, local Polish intakes and Belgium’s Play to Grow rules.",
+    readingMinutes: 3,
+    keywords: [
+      "football academy open day 2026",
+      "probeertraining Netherlands",
+      "Play to Grow Belgium",
+    ],
+    publishedAt: "2026-08-03",
+    lastModified: "2026-08-03",
+    sections: [
+      {
+        heading: "Key takeaway",
+        paragraphs: [
+          "Post-summer is a strong outreach window. Separate fan open days from real academy trials. In Belgium, Play to Grow tightens ethical scouting. In Poland, track local top-up intakes—not only spring showcase days.",
         ],
       },
     ],

@@ -12,28 +12,24 @@ export function BlogCard({ article, href }: BlogCardProps) {
 
   return (
     <article
-      className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${theme.border} border-l-4`}
+      className={`group relative border border-[var(--border)] bg-white p-5 transition hover:border-slate-400 ${theme.border} border-l-[3px]`}
     >
-      <div
-        className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r opacity-80 ${theme.gradient}`}
-        aria-hidden
-      />
       <span
-        className={`inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ring-1 ring-inset ${theme.badge}`}
+        className={`inline-flex rounded px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide ring-1 ring-inset ${theme.badge}`}
       >
         {theme.label}
       </span>
-      <h2 className="mt-3 text-lg font-semibold text-slate-900">
+      <h2 className="mt-3 text-lg font-semibold leading-snug text-[var(--brand)]">
         <Link href={href} className="hover:underline">
           {article.title}
         </Link>
       </h2>
-      <p className="mt-2 text-sm leading-7 text-slate-700">{article.description}</p>
+      <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{article.description}</p>
       <p className="mt-4 flex items-center gap-2 text-xs text-slate-500">
-        <span>{article.readingMinutes} min czytania</span>
+        <span>{article.readingMinutes} min</span>
         <span aria-hidden>·</span>
-        <span className="font-medium" style={{ color: theme.accent }}>
-          Czytaj więcej →
+        <span className="font-semibold" style={{ color: theme.accent }}>
+          Czytaj →
         </span>
       </p>
     </article>

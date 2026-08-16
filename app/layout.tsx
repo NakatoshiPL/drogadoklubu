@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Roboto_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Source_Sans_3 } from "next/font/google";
 import { Analytics } from "./components/analytics";
 import { MobileBottomCta } from "./components/mobile-cta";
 import { SiteFooter } from "./components/site-footer";
@@ -7,14 +7,15 @@ import { SiteHeader } from "./components/site-header";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
-const inter = Inter({
+const sourceSans = Source_Sans_3({
   variable: "--font-app-sans",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
 });
 
-const robotoMono = Roboto_Mono({
+const plexMono = IBM_Plex_Mono({
   variable: "--font-app-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -69,9 +70,9 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${inter.variable} ${robotoMono.variable} h-full antialiased`}
+      className={`${sourceSans.variable} ${plexMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-slate-50 text-slate-900">
+      <body className="min-h-full bg-[var(--background)] text-[var(--foreground)]">
         <Analytics />
         <script
           type="application/ld+json"
@@ -83,7 +84,7 @@ export default function RootLayout({
         />
         <div className="flex min-h-full flex-col">
           <SiteHeader />
-          <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 pb-28 md:px-6 md:py-10 md:pb-10">
+          <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8 pb-28 md:px-6 md:py-12 md:pb-12">
             {children}
           </main>
           <MobileBottomCta />
